@@ -3,6 +3,11 @@
 
 var fs = require('fs');
 
+/**
+  ### read(filename, opts)
+
+  Read from the target file as required
+**/
 module.exports = function(filename, opts) {
   var mode = (opts || {}).mode || 0x1B6; // 0666
   var bufferSize = (opts || {}).bufferSize || 1024;

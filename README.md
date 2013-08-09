@@ -8,3 +8,7 @@ and feedback is welcome :)
 ![Build Status]
 (https://travis-ci.org/DamonOehlman/pull-readfile.png?branch=master)
 ](https://travis-ci.org/DamonOehlman/pull-readfile)
+
+### read(filename, opts)
+
+Read from the target file as required
