@@ -1,6 +1,7 @@
+var path = require('path');
 var test = require('tape');
 var pull = require('pull-stream');
-var readfile = require('pull-readfile');
+var readfile = require('..');
 
 test('small text', function(t) {
   t.plan(1);
@@ -8,7 +9,7 @@ test('small text', function(t) {
   pull(
     readfile(path.resolve(__dirname, 'assets', 'test.txt')),
     pull.drain(function(data) {
-      console.log(data);
-    });
+      t.equal(data.toString(), 'hello');
+    })
   );
 });

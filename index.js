@@ -20,11 +20,12 @@ module.exports = pull.Source(function(filename, opts) {
         return cb(err);
       }
 
-      cb(count < bufferSize, buffer.slice(0, count));
+      cb(count === 0, buffer.slice(0, count));
     });
   }
 
   function open(cb) {
+    console.log('attempting open: ' + filename);
     fs.open(filename, 'r', mode, function(err, descriptor) {
       if (err) {
         return cb(err);
