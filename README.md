@@ -11,4 +11,14 @@ and feedback is welcome :)
 
 ### read(filename, opts)
 
-Read from the target file as required
+Read from the target file as required:
+
+```js
+var file = require('pull-file');
+var pull = require('pull-stream');
+
+pull(
+  file.read(path.resolve(__dirname, 'bigfile')),
+  pull.drain(console.log) // see the chunks :)
+);
+```

@@ -6,7 +6,18 @@ var fs = require('fs');
 /**
   ### read(filename, opts)
 
-  Read from the target file as required
+  Read from the target file as required:
+
+  ```js
+  var file = require('pull-file');
+  var pull = require('pull-stream');
+
+  pull(
+    file.read(path.resolve(__dirname, 'bigfile')),
+    pull.drain(console.log) // see the chunks :)
+  );
+  ```
+  
 **/
 module.exports = function(filename, opts) {
   var mode = (opts || {}).mode || 0x1B6; // 0666
