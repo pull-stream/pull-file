@@ -7,6 +7,15 @@ var pull = require('pull-core');
 /**
   # pull-readfile
 
+  This is a simple module which uses raw file reading methods available in
+  the node `fs` module to read files on-demand.  It's a work in progress
+  and feedback is welcome :)
+
+  [
+  ![Build Status]
+  (https://travis-ci.org/DamonOehlman/pull-readfile.png?branch=master)
+  ](https://travis-ci.org/DamonOehlman/pull-readfile)
+
 **/
 module.exports = pull.Source(function(filename, opts) {
   var mode = (opts || {}).mode || 0x1B6; // 0666
