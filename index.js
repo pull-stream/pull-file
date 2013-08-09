@@ -2,6 +2,7 @@
 'use strict';
 
 var pull = require('pull-core');
+var throughs = require('./throughs');
 
 /**
   # pull-file
@@ -17,3 +18,8 @@ var pull = require('pull-core');
 
 **/
 exports.read = pull.Source(require('./read'));
+
+// initialise the through helpers
+for (var k in throughs) {
+  exports[k] = pull.Through(throughs[k]);
+}

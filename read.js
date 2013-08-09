@@ -13,11 +13,11 @@ var fs = require('fs');
   var pull = require('pull-stream');
 
   pull(
-    file.read(path.resolve(__dirname, 'bigfile')),
+    file.read(__dirname +  '/bigfile'),
     pull.drain(console.log) // see the chunks :)
   );
   ```
-  
+
 **/
 module.exports = function(filename, opts) {
   var mode = (opts || {}).mode || 0x1B6; // 0666
@@ -36,7 +36,6 @@ module.exports = function(filename, opts) {
   }
 
   function open(cb) {
-    console.log('attempting open: ' + filename);
     fs.open(filename, 'r', mode, function(err, descriptor) {
       if (err) {
         return cb(err);

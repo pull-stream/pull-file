@@ -1,1 +1,2 @@
 require('./small');
+require('./split');
