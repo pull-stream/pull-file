@@ -1,0 +1,31 @@
+{
+  "name": "pull-readfile",
+  "version": "0.0.0",
+  "description": "Pull streams implementation of a file reader",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test/all.js",
+    "gendocs": "sourcecat | emu > README.md"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DamonOehlman/pull-readfile.git"
+  },
+  "keywords": [
+    "pull-stream",
+    "fs",
+    "read"
+  ],
+  "author": "Damon Oehlman <damon.oehlman@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DamonOehlman/pull-readfile/issues"
+  },
+  "dependencies": {
+    "pull-core": "~1.0.0"
+  },
+  "devDependencies": {
+    "pull-stream": "~2.20.1",
+    "tape": "~1.0.4"
+  }
+}
