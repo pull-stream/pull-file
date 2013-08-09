@@ -10,7 +10,7 @@ var pull = require('pull-core');
 **/
 module.exports = pull.Source(function(filename, opts) {
   var mode = (opts || {}).mode || 0x1B6; // 0666
-  var bufferSize = (opts || {}).bufferSize = 1024;
+  var bufferSize = (opts || {}).bufferSize || 1024;
   var buffer = new Buffer(bufferSize);
   var fd;
 

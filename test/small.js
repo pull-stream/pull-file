@@ -8,8 +8,11 @@ test('small text', function(t) {
 
   pull(
     readfile(path.resolve(__dirname, 'assets', 'test.txt')),
-    pull.drain(function(data) {
-      t.equal(data.toString(), 'hello');
+    pull.map(function(data) {
+      return data.toString()
+    }),
+    pull.collect(function(err, items) {
+      t.equal(items.join(''), 'hello')
     })
   );
 });
