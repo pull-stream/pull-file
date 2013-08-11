@@ -30,3 +30,15 @@ test('small file split (constrain buffer size)', function(t) {
     })
   );
 });
+
+test('unicode', function(t) {
+  t.plan(48);
+
+  pull(
+    file.read(path.resolve(__dirname, 'assets', 'BV.txt')),
+    file.split('\n'),
+    pull.drain(function(value) {
+      t.pass('got value');
+    })
+  );
+});

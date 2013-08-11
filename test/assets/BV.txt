@@ -1,0 +1,48 @@
+3371096 Williams Reef Williams Reef Williams Reef,Williamsrevet -54.44861 3.41833 H RF  BV    00        0   232 Europe/Oslo 2012-01-18
+3371097 Cape Valdivia Cape Valdivia Cap Valdivia,Cape Valdivia,Kaap Valdivia  -54.3875  3.35556 T CAPE  BV    00        0   -9999 Europe/Oslo 2012-01-18
+3371098 Store Kari Rock Store Kari Rock Gross Kari,Store Kari,Store Kari Rock -54.3875  3.37722 T RK  BV    00        0   -9999 Europe/Oslo 2012-01-18
+3371099 Spiess Rocks  Spiess Rocks  Spiess Rocks,Spiessbaene,Spiessbåene  -54.40611 3.43389 H RF  BV    00        0 1 1 Europe/Oslo 2012-01-18
+3371100 Sachse Rocks  Sachse Rocks  Sachse Rocks,Sachsebaene,Sachsebåene  -54.4 3.41667 H RF  BV    00        0   14  Europe/Oslo 2012-01-18
+3371101 Rustad Knoll  Rustad Knoll  Rustadkollen  -54.44917 3.33194 T HLL BV  NO  00        0 340 316 Europe/Oslo 2007-12-19
+3371102 Røver Anchorage Rover Anchorage Rauberhohle,Rover Anchorage,Roverhullet,Räuberhöhle,Røver Anchorage,Røverhullet -54.45  3.35  H ANCH  BV    00        0   -9999 Europe/Oslo 2012-01-18
+3371103 Posadowsky Glacier  Posadowsky Glacier  Posadowsky Glacier,Posadowskybreen,Posadowskys Bre  -54.41667 3.36667 H GLCR  BV    00        0   545 Europe/Oslo 2012-01-18
+3371104 Olav Peak Olav Peak Kaiser Wilhelm Pik,Olavs Topp,Olavstoppen,Olavtoppen  -54.40917 3.35278 T PK  BV  NO  00        0 780 719 Europe/Oslo 2008-01-11
+3371105 Norvegia Rock Norvegia Rock Norvegia Rock,Norvegiabaen,Norvegiabåen -54.4 3.41667 H RF  BV    00        0   14  Europe/Oslo 2012-01-18
+3371106 Norvegia Point  Norvegia Point  Cape Norvegia,Norvegiaodden,Point Norvegia  -54.43222 3.29028 T PT  BV  NO  00        0   -9999 Europe/Oslo 2007-12-19
+3371107 Norris Reef Norris Reef Norris Reef,Norrisrevet -54.405 3.27778 H RF  BV    00        0   -9999 Europe/Oslo 2012-01-18
+3371108 Mosby Peak  Mosby Peak  Mosbys Topp,Mosbytoppen -54.42361 3.30694 T PK  BV  NO  00        0 670 565 Europe/Oslo 2007-12-19
+3371109 Morrell Reef  Morrell Reef  Morrell Reef,Morrellrevet -54.45  3.48333 H RF  BV    00        0   -9999 Europe/Oslo 2012-01-18
+3371110 Cape Meteor Cape Meteor Cap Meteor,Cape Meteor,Kaap Meteor  -54.42278 3.43389 T CAPE  BV    00        0   66  Europe/Oslo 2012-01-18
+3371111 Lykke Peak  Lykke Peak  Lykkes Topp,Lykketoppen -54.43667 3.32083 T PK  BV  NO  00        0 765 655 Europe/Oslo 2007-12-19
+3371112 Cape Lollo  Cape Lollo  Cap Lollo,Kaap Lollo,Kapp Lollo -54.41139 3.42778 T CAPE  BV  NO  00        0   41  Europe/Oslo 2007-12-18
+3371113 Lindsay Reef  Lindsay Reef  Lindsay Reef,Lindsayrevet -54.43333 3.48333 H RF  BV    00        0   4 Europe/Oslo 2012-01-18
+3371114 Lille Kari Rock Lille Kari Rock Lille Kari,Lille Kari Rock,Litle-Kari -54.395 3.41111 T RK  BV    00        0   -9999 Europe/Oslo 2012-01-18
+3371115 Lars Island Lars Island Illa Lars,Lars Islet,Larsoya,Larsøya  -54.45278 3.31389 T ISL BV  NO  00        0   2 Europe/Oslo 2007-12-18
+3371116 Horntvedt Glacier Horntvedt Glacier Horntvedt Glacier,Horntvedtbreen,Horntvedts Bre -54.39306 3.36111 H GLCR  BV    00        0   131 Europe/Oslo 2012-01-18
+3371117 Horn Reef Horn Reef Horn Reef,Hornrevet,Horns-revet -54.46667 3.35  H RF  BV    00        0   -9999 Europe/Oslo 2012-01-18
+3371118 Cape Fie  Cape Fie  Cap Fie,Cape Fie,Discovery Point  -54.44444 3.41583 T CAPE  BV    00        0   8 Europe/Oslo 2012-01-18
+3371119 Cape Circoncision Cape Circoncision Cape Circoncision,Cape Circumcision,Kaap Circoncision -54.39667 3.29167 T CAPE  BV    00        0   0 Europe/Oslo 2012-01-18
+3371120 Christensen Glacier Christensen Glacier Christensen Glacier,Christensenbreen,Christensens Bre -54.44611 3.35056 H GLCR  BV    00        0   156 Europe/Oslo 2012-01-18
+3371121 Cato Point  Cato Point  Cato Point,Catoodden,Seal Point -54.45111 3.31944 T PT  BV    00        0   27  Europe/Oslo 2012-01-18
+3371122 Bouvetøya Bouvetoya Bouvet,Bouvet Adasi,Bouvet Adası,Bouvet Island,Bouvet' saar,Bouvet'nsaari,Bouvet-sziget,Bouveteyja,Bouvetinsel,Bouvetoen,Bouvetov ostrov,Bouvetov otok,Bouvetoya,Bouvetsuolu,Bouvetuv ostrov,Bouvetön,Bouvetøen,Bouvetøya,Bouvetův ostrov,Buve,Buve sala,Buvetinsulo,Buvē sala,Buvė,Ile Bouvet,Isla Bouvet,Isola Bouvet,Mpoube,Ostrvo Buve,Otok Bouvet,Pulau Bouvet,Wyspa Bouveta,Ynys Bouvet,bu wei dao,bube dao,bube seom,bwbh,Île Bouvet,Μπουβέ,Буве,Острво Буве,בובה,ブーベ島,布韦岛,부베 섬  -54.42222 3.35833 T ISL BV    00        0   576 Europe/Oslo 2012-01-18
+3371123 Bouvet Island Bouvet Island Bouvet Adasi,Bouvet Adası,Bouvet Island,Bouvet Uhartea,Bouvet sala,Bouvet ƒudomekpo nutome,Bouvet' saar,Bouvet'nsaari,Bouvet-sullot,Bouvet-sziget,Bouveteiland,Bouveteyja,Bouvetinsel,Bouveto,Bouvetoen,Bouvetov ostrov,Bouvetov otok,Bouvetoy,Bouvetoya,Bouvetsuolu,Bouvetuv ostrov,Bouvetön,Bouvetø,Bouvetøya,Bouvetův ostrov,Bouvet’ saar,Bouvet’nsaari,Bouvitovi ostrovi,Bove Adasi,Bove Adası,Buve Ostrva,Buve sala,Buve vostrau,Buvē sala,Enez Bouvet,GJao Bouvet (Na Uy),Ile Bouvet,Ilha Bouvet,Illa Bouvet,Insla Bouvet,Insula Bouvet,Insula de Bouvet,Isla Bouvet,Isola Bouvet,Kisiwa cha Bouvet,Motu Puveti,Nesos Mpoube,Oilean Bouvet,Oileán Bouvet,Ostriv Buve,Ostrov Buve,Otok Bouvet,Pulau Bouvet,Wyspa Bouveta,Ynys Bouvet,babheta dbipa,baubhet a'isalyanda,bauveta a'ilenda,bauveta dvipa,baverr dvip,bo'uveta beta,bobheta dbipa,bovet divi,bovet dvipa,bu wei te dao,bube,bube dao,bubheta tapu,buves kʼundzuli,bwwyٹ aylynڈ,i-Bouvet Island,jzyrh bwwt,jzyrt bwfyh,keaa buwet,povet tivukal,Île Bouvet,Đảo Bouvet (Na Uy),ʼyy bwbh,Νήσος Μπουβέ,Боувитови острови,Буве Острва,Бувэ востраў,Остров Буве,Острів Буве,איי בובה,بؤویٹ آئلینڈ,جزيرة بوفيه,جزیره بووت,बुभेट टापु,बोउवेट बेट,बौवेत द्वीप,বভেট দ্বীপ,বোভেট দ্বীপ,બૌવેત આઇલેન્ડ,ବୌଭେଟ୍ ଆଇସଲ୍ୟାଣ୍ଡ,பொவேட் தீவுகள்,బొవెట్ దీవి,ಬೋವೆಟ್ ದ್ವೀಪ,ബൗവെറ്റ് ദ്വീപ്,เกาะบูเวต,ბუვეს კუნძული,ቡቬት ደሴት,የቦውቬት ደሴት,ブーベ島,布维特岛,부베 -54.43333 3.4 A PCLD  BV  NO  00        0   240 Europe/Oslo 2012-01-06
+3371124 Bolle Bay Bolle Bay Badia Bolle,Bolle Bay,Bollevika -54.45  3.33333 H COVE  BV    00        0   173 Europe/Oslo 2012-01-18
+3371125 Benn Skerries Benn Skerries Benn Skerries,Bennskjaer,Bennskjaeret -54.45  3.31667 T RKS BV    00        0   -9999 Europe/Oslo 2012-01-18
+3371177 Randibåen Randibaen Randi Rock,Randibaen,Randibåen  -54.45111 3.38889 T RK  BV    00        0   89  Europe/Oslo 2012-01-19
+3371178 Motte Sound Motte Sound Motte Sound,Mottesundet -54.45333 3.31944 H CHN BV    00        0   -9999 Europe/Oslo 2012-01-19
+3371179 Westwind Beach  Westwind Beach  Platja de Westwind,Vestavindstranda,Westwindstranda -54.41  3.28528 T BCH BV  NO  00        0   -9999 Europe/Oslo 2007-12-19
+3371180 Black Cliff Black Cliff Black Cliff,Svarthamaren  -54.43833 3.42333 T CLF BV    00        0   27  Europe/Oslo 2012-01-19
+3371181 Engelbrecht Glacier Engelbrecht Glacier Engelbrecht Glacier,Engelbrechtbreen  -54.43556 3.30278 H GLCR  BV    00        0   211 Europe/Oslo 2012-01-19
+3371182 Esmarch Coast Esmarch Coast Esmarch Coast,Esmarchkysten -54.425 3.29306 L CST BV    00        0   225 Europe/Oslo 2012-01-19
+3371183 Morgenstierne Coast Morgenstierne Coast Morgenstiernekysten -54.40139 3.33056 L CST BV  NO  00        0   288 Europe/Oslo 2007-12-19
+3371184 Vogt Coast  Vogt Coast  Vogt Coast,Vogtkysten -54.44444 3.375 L CST BV    00        0   168 Europe/Oslo 2012-01-19
+3371185 Mowinckel Coast Mowinckel Coast Mowinckelkysten -54.43472 3.42722 L CST BV  NO  00        0   224 Europe/Oslo 2007-12-18
+3371186 Nyrøysa Nyroysa   -54.40972 3.28611 T BNCH  BV    00        0   6 Europe/Oslo 1996-01-04
+3371187 Victoria Terrace  Victoria Terrace  Victoria Terrace,Victoria Terrasse  -54.39722 3.40139 T CLF BV    00        0   -9999 Europe/Oslo 2012-01-19
+3371188 Slakhallet  Slakhallet    -54.42083 3.39306 T SLP BV    00        0   327 Europe/Oslo 1997-08-07
+3371189 Randi Glacier Randi Glacier Randi Glacier,Randibreen  -54.44361 3.39333 H GLCR  BV    00        0   152 Europe/Oslo 2012-01-19
+3371190 Wilhelm II Plateau  Wilhelm II Plateau  Wilhelm II Plateau,Wilhelmplataet,Wilhelmplatået  -54.41528 3.32361 H DOMG  BV    00        0   483 Europe/Oslo 2012-01-19
+3371191 Øle Høiland Pillar  Ole Hoiland Pillar  Ola Hoiland Pillar,Ole Hoiland Pillar,Ole Hoilandstotta,Øla Høiland Pillar,Øle Høiland Pillar,Øle Høilandstøtta -54.39806 3.40222 T RK  BV    00        0 9 6 Europe/Oslo 2012-01-19
+3371192 Devil’s Gate  Devil's Gate  Devil's Gate,Devil’s Gate,Djevleporten  -54.38611 3.35278 S ARCH  BV    00        0   -9999 Europe/Oslo 2012-01-19
+3371214 Skarven Skarven   -54.39722 3.28056 T RK  BV    00        0   -9999 Europe/Oslo 1997-08-07
+6620379 Bouvetøya (general) Bouvetoya (general)   -54.42932 3.41263 A ADM1  BV    00        0   186 Europe/Oslo 2010-08-20

@@ -22,17 +22,23 @@ var fs = require('fs');
 module.exports = function(filename, opts) {
   var mode = (opts || {}).mode || 0x1B6; // 0666
   var bufferSize = (opts || {}).bufferSize || 1024;
-  var buffer = new Buffer(bufferSize);
   var fd;
 
   function readNext(cb) {
-    fs.read(fd, buffer, 0, bufferSize, null, function(err, count) {
-      if (err) {
-        return cb(err);
-      }
+    fs.read(
+      fd,
+      new Buffer(bufferSize),
+      0,
+      bufferSize,
+      null,
+      function(err, count, buffer) {
+        if (err) {
+          return cb(err);
+        }
 
-      cb(count === 0, buffer.slice(0, count));
-    });
+        cb(count === 0, buffer.slice(0, count));
+      }
+    );
   }
 
   function open(cb) {

@@ -29,6 +29,10 @@ exports.split = function(read, chunk, opts) {
   var queued = new Buffer(0);
   var encoding = (opts || {}).encoding || 'utf8';
 
+  if (typeof chunk == 'string' || (chunk instanceof String)) {
+    chunk = new Buffer(chunk, encoding);
+  }
+
   function checkMatch(q, index) {
     var match = true;
 
@@ -55,8 +59,8 @@ exports.split = function(read, chunk, opts) {
       if (end) {
         // if we have data queued and end is not an error, then pass
         // the remaining along
-        if (queued && queued.length && (! (end instanceof Error))) {
-          cb(null, queued);
+        if (queued && queued.length > 0 && (! (end instanceof Error))) {
+          cb(false, queued);
           queued = null;
         }
 
@@ -82,7 +86,7 @@ exports.split = function(read, chunk, opts) {
   function splitAtChunks(q, cb) {
     // iterate through the data looking for a match
     for (var ii = 0, count = q.length; ii < count; ii++) {
-      if (q[ii] === chunk[0] && checkMatch(q, ii)) {
+      if (q[ii] === chunk[0] && (chunk.length === 1 || checkMatch(q, ii))) {
         // send the data to the callback
         cb(null, q.slice(0, ii));
 
@@ -92,10 +96,6 @@ exports.split = function(read, chunk, opts) {
     }
 
     return q;
-  }
-
-  if (typeof chunk == 'string' || (chunk instanceof String)) {
-    chunk = new Buffer(chunk, encoding);
   }
 
   return function(end, cb) {
