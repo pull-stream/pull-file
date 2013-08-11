@@ -18,7 +18,7 @@ test('small file split', function(t) {
 });
 
 test('small file split (constrain buffer size)', function(t) {
-  var expected = ['this', 'is', 'a', 'test of multiline splits', 'yeah'];
+  var expected = ['this', 'is', 'a', 'test of multiline splits', 'yeah it is', '!'];
 
   t.plan(expected.length);
 
