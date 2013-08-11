@@ -51,7 +51,9 @@ module.exports = function(filename, opts) {
 
   return function(end, cb) {
     if (end) {
-      return cb(end);
+      return fs.close(fd, function() {
+        cb(end);
+      });
     }
 
     if (! fd) {
