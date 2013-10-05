@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/DamonOehlman/pull-readfile.git"
+    "url": "https://github.com/DamonOehlman/pull-file.git"
   },
   "keywords": [
     "pull-stream",
@@ -19,7 +19,7 @@
   "author": "Damon Oehlman <damon.oehlman@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/DamonOehlman/pull-readfile/issues"
+    "url": "https://github.com/DamonOehlman/pull-file/issues"
   },
   "dependencies": {
     "pull-core": "~1.0.0"
