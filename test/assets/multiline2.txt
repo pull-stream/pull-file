@@ -1,6 +1,0 @@
-this
-is
-a
-test of multiline splits
-yeah it is
-!
