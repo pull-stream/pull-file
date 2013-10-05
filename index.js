@@ -2,7 +2,7 @@
 'use strict';
 
 var pull = require('pull-core');
-var throughs = require('./throughs');
+var fs = require('fs');
 
 /**
   # pull-file
@@ -11,15 +11,66 @@ var throughs = require('./throughs');
   the node `fs` module to read files on-demand.  It's a work in progress
   and feedback is welcome :)
 
-  [
-  ![Build Status]
-  (https://travis-ci.org/DamonOehlman/pull-file.png?branch=master)
-  ](https://travis-ci.org/DamonOehlman/pull-file)
+  ## Example Usage
+
+  ```js
+  var file = require('pull-file');
+  var pull = require('pull-stream');
+
+  pull(
+    file(__dirname +  '/bigfile'),
+    pull.log() // see the chunks :)
+  );
+  ```
 
 **/
-exports.read = pull.Source(require('./read'));
+module.exports = pull.Source(function(filename, opts) {
+  var mode = (opts || {}).mode || 0x1B6; // 0666
+  var bufferSize = (opts || {}).bufferSize || 1024;
+  var fd;
 
-// initialise the through helpers
-for (var k in throughs) {
-  exports[k] = pull.Through(throughs[k]);
-}
+  function readNext(cb) {
+    fs.read(
+      fd,
+      new Buffer(bufferSize),
+      0,
+      bufferSize,
+      null,
+      function(err, count, buffer) {
+        if (err) {
+          return cb(err);
+        }
+
+        cb(count === 0, buffer.slice(0, count));
+      }
+    );
+  }
+
+  function open(cb) {
+    fs.open(filename, 'r', mode, function(err, descriptor) {
+      if (err) {
+        return cb(err);
+      }
+
+      // save the file descriptor
+      fd = descriptor;
+
+      // read the next bytes
+      return readNext(cb);
+    });
+  }
+
+  return function(end, cb) {
+    if (end) {
+      return fs.close(fd, function() {
+        cb(end);
+      });
+    }
+
+    if (! fd) {
+      return open(cb);
+    }
+
+    return readNext(cb);
+  };
+});

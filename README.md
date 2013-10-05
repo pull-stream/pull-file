@@ -4,44 +4,44 @@ This is a simple module which uses raw file reading methods available in
 the node `fs` module to read files on-demand.  It's a work in progress
 and feedback is welcome :)
 
-[
-![Build Status]
-(https://travis-ci.org/DamonOehlman/pull-file.png?branch=master)
-](https://travis-ci.org/DamonOehlman/pull-file)
 
-### read(filename, opts)
+[![NPM](https://nodei.co/npm/pull-file.png)](https://nodei.co/npm/pull-file/)
 
-Read from the target file as required:
+[![Build Status](https://travis-ci.org/DamonOehlman/pull-readfile.png?branch=master)](https://travis-ci.org/DamonOehlman/pull-readfile)
+
+## Example Usage
 
 ```js
 var file = require('pull-file');
 var pull = require('pull-stream');
 
 pull(
-  file.read(__dirname +  '/bigfile'),
-  pull.drain(console.log) // see the chunks :)
+  file(__dirname +  '/bigfile'),
+  pull.log() // see the chunks :)
 );
 ```
 
-## Through Streams
+## License(s)
 
-### split(chunk)
+### MIT
 
-Will collect pieces of the file until the split chunk is found, then it
-will pass on all the data collected prior to encountering the chunk.  The
-split functionality works at a pure buffer level so if it is passed a string
-it will convert that into a Buffer before attempting the split operation.
+Copyright (c) 2013 Damon Oehlman <damon.oehlman@gmail.com>
 
-Usage:
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+'Software'), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
 
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
 
-```js
-var file = require('pull-file');
-var pull = require('pull-stream');
-
-pull(
-  file.read(__dirname + '/test.csv'),
-  file.split('\n'),
-  pull.drain(console.log) // log out lines
-);
-```
+THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
