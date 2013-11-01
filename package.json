@@ -1,6 +1,6 @@
 {
   "name": "pull-file",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Pull streams implementation of a file reader",
   "main": "index.js",
   "scripts": {
