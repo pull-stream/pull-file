@@ -1,3 +1,4 @@
+
 /* jshint node: true */
 'use strict';
 
@@ -28,6 +29,7 @@ module.exports = pull.Source(function(filename, opts) {
   var mode = (opts || {}).mode || 0x1B6; // 0666
   var bufferSize = (opts || {}).bufferSize || 1024;
   var fd;
+  var ended;
 
   function readNext(cb) {
     fs.read(
@@ -37,6 +39,12 @@ module.exports = pull.Source(function(filename, opts) {
       bufferSize,
       null,
       function(err, count, buffer) {
+        // if we have received an end noticiation, just discard this data
+        if (ended) {
+          return;
+        }
+
+        // if we encountered a read error pass it on
         if (err) {
           return cb(err);
         }
@@ -62,6 +70,12 @@ module.exports = pull.Source(function(filename, opts) {
 
   return function(end, cb) {
     if (end) {
+      // if we have already received the end notification, abort further
+      if (ended) {
+        return;
+      }
+
+      ended = end;
       return fs.close(fd, function() {
         cb(end);
       });
