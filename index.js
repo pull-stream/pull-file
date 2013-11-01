@@ -14,15 +14,7 @@ var fs = require('fs');
 
   ## Example Usage
 
-  ```js
-  var file = require('pull-file');
-  var pull = require('pull-stream');
-
-  pull(
-    file(__dirname +  '/bigfile'),
-    pull.log() // see the chunks :)
-  );
-  ```
+  <<< examples/ipsum-chunks.js
 
 **/
 module.exports = pull.Source(function(filename, opts) {
