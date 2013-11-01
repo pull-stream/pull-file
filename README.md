@@ -7,7 +7,7 @@ and feedback is welcome :)
 
 [![NPM](https://nodei.co/npm/pull-file.png)](https://nodei.co/npm/pull-file/)
 
-[![Build Status](https://travis-ci.org/DamonOehlman/pull-readfile.png?branch=master)](https://travis-ci.org/DamonOehlman/pull-readfile)
+[![Build Status](https://drone.io/bitbucket.org/DamonOehlman/pull-file/status.png)](https://drone.io/bitbucket.org/DamonOehlman/pull-file/latest)
 
 ## Example Usage
 
