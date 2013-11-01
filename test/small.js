@@ -12,7 +12,7 @@ test('small text', function(t) {
       return data.toString();
     }),
     pull.collect(function(err, items) {
-      t.equal(items.join(''), 'hello')
+      t.equal(items.join(''), 'hello');
     })
   );
 });
