@@ -7,7 +7,7 @@ and feedback is welcome :)
 
 [![NPM](https://nodei.co/npm/pull-file.png)](https://nodei.co/npm/pull-file/)
 
-[![Build Status](https://drone.io/bitbucket.org/DamonOehlman/pull-file/status.png)](https://drone.io/bitbucket.org/DamonOehlman/pull-file/latest)
+[![Build Status](https://img.shields.io/travis/DamonOehlman/pull-file.svg?branch=master)](https://travis-ci.org/DamonOehlman/pull-file) [![experimental](https://img.shields.io/badge/stability-experimental-red.svg)](https://github.com/badges/stability-badges) 
 
 ## Example Usage
 
@@ -30,7 +30,7 @@ pull(
 
 ### MIT
 
-Copyright (c) 2013 Damon Oehlman <damon.oehlman@gmail.com>
+Copyright (c) 2014 Damon Oehlman <damon.oehlman@gmail.com>
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
