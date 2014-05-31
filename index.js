@@ -41,7 +41,7 @@ module.exports = pull.Source(function(filename, opts) {
           return cb(err);
         }
 
-        cb(count === 0, buffer.slice(0, count));
+        cb(count === 0, count === 0 ? null : buffer.slice(0, count));
       }
     );
   }
