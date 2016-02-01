@@ -17,19 +17,23 @@ var fs = require('fs');
 
 **/
 module.exports = function(filename, opts) {
-  var mode = (opts || {}).mode || 0x1B6; // 0666
-  var bufferSize = (opts || {}).bufferSize || 1024;
+  var mode = opts && opts.mode || 0x1B6; // 0666
+  var bufferSize = opts && opts.bufferSize || 1024;
+  var start = opts && opts.start || 0
+  var end = opts && opts.end || Number.MAX_SAFE_INTEGER
   var fd;
   var ended;
 
   function readNext(cb) {
+    var toRead = Math.min(end - start, bufferSize);
     fs.read(
       fd,
-      new Buffer(bufferSize),
+      new Buffer(toRead),
       0,
-      bufferSize,
-      null,
+      toRead,
+      start,
       function(err, count, buffer) {
+        start += count;
         // if we have received an end noticiation, just discard this data
         if (ended) {
           return cb(err || ended);
@@ -63,7 +67,7 @@ module.exports = function(filename, opts) {
     if (end) {
       // if we have already received the end notification, abort further
       if (ended) {
-        return;
+        return cb(ended)
       }
 
       ended = end;
