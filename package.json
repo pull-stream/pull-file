@@ -14,9 +14,6 @@
   ],
   "author": "Damon Oehlman <damon.oehlman@gmail.com>",
   "license": "MIT",
-  "dependencies": {
-    "pull-core": "^1"
-  },
   "devDependencies": {
     "pull-stream": "^2",
     "tape": "^2"
@@ -34,3 +31,4 @@
   },
   "homepage": "https://github.com/DamonOehlman/pull-file"
 }
+

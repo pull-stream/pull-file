@@ -2,7 +2,6 @@
 /* jshint node: true */
 'use strict';
 
-var pull = require('pull-core');
 var fs = require('fs');
 
 /**
@@ -17,7 +16,7 @@ var fs = require('fs');
   <<< examples/ipsum-chunks.js
 
 **/
-module.exports = pull.Source(function(filename, opts) {
+module.exports = function(filename, opts) {
   var mode = (opts || {}).mode || 0x1B6; // 0666
   var bufferSize = (opts || {}).bufferSize || 1024;
   var fd;
@@ -33,7 +32,7 @@ module.exports = pull.Source(function(filename, opts) {
       function(err, count, buffer) {
         // if we have received an end noticiation, just discard this data
         if (ended) {
-          return;
+          return cb(err || ended);
         }
 
         // if we encountered a read error pass it on
@@ -79,4 +78,5 @@ module.exports = pull.Source(function(filename, opts) {
 
     return readNext(cb);
   };
-});
+};
+
