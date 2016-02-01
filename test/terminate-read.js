@@ -11,13 +11,16 @@ test('can terminate read process', function(t) {
     'les. Suspendisse cursus, turpis eget dap'
   ];
 
-  t.plan(expected.length);
+//  t.plan(expected.length);
 
   pull(
     file(path.resolve(__dirname, 'assets', 'ipsum.txt'), { bufferSize: 40 }),
     pull.take(expected.length),
     pull.drain(function(data) {
       t.equal(data.toString(), expected.shift(), 'line ok in drain');
+    }, function (err) {
+      if(err) throw err
+      t.end()
     })
   );
 });
