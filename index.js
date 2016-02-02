@@ -34,8 +34,7 @@ module.exports = function(filename, opts) {
 
     fs.read(
       fd,
-      _buffer ||
-        new Buffer(toRead),
+      _buffer,
       0,
       toRead,
       start,
@@ -139,6 +138,7 @@ module.exports = function(filename, opts) {
   return source
 
 };
+
 
 
 
