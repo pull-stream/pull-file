@@ -17,6 +17,7 @@
   "devDependencies": {
     "cont": "^1.0.3",
     "pull-stream": "^3.1.0",
+    "statistics": "^2.0.1",
     "tape": "^4.4.0"
   },
   "directories": {
