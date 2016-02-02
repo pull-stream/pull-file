@@ -18,11 +18,12 @@ var fs = require('fs');
 **/
 module.exports = function(filename, opts) {
   var mode = opts && opts.mode || 0x1B6; // 0666
-  var bufferSize = opts && opts.bufferSize || 1024;
+  var bufferSize = opts && opts.bufferSize || 1024*64;
   var start = opts && opts.start || 0
   var end = opts && opts.end || Number.MAX_SAFE_INTEGER
   var fd = opts && opts.fd
   var ended, closeNext, busy, _cb;
+  var _buffer = new Buffer(bufferSize)
 
   var flags = opts && opts.flags || 'r'
 
@@ -30,9 +31,11 @@ module.exports = function(filename, opts) {
     if(closeNext) return close(cb)
     var toRead = Math.min(end - start, bufferSize);
     busy = true
+
     fs.read(
       fd,
-      new Buffer(toRead),
+      _buffer ||
+        new Buffer(toRead),
       0,
       toRead,
       start,
@@ -62,6 +65,7 @@ module.exports = function(filename, opts) {
         }
       }
     );
+    _buffer = new Buffer(Math.min(end - start, bufferSize))
   }
 
   function open(cb) {
