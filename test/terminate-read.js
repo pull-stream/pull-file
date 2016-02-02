@@ -5,8 +5,10 @@ var file = require('..');
 var fs = require('fs')
 
 var ipsum = path.resolve(__dirname, 'assets', 'ipsum.txt')
+var au = path.resolve(__dirname, 'assets', 'AU.txt')
 
 test('can terminate read process', function(t) {
+
   var expected = [
     'Lorem ipsum dolor sit amet, consectetur ',
     'adipiscing elit. Quisque quis tortor eli',
@@ -64,7 +66,7 @@ test('can terminate file immediately (after open)', function (t) {
 
 test('can terminate file during a read', function (t) {
 
-  var source = file(ipsum)
+  var source = file(ipsum, {bufferSize: 1024})
   var sync1 = false, sync2 = false
   source(null, function (end, data) {
     t.equal(end, null)
@@ -72,12 +74,11 @@ test('can terminate file during a read', function (t) {
     source(null, function (end, data) {
       sync1 = true
       t.equal(end, true)
-      //t.equal(end, true)
       t.notOk(data, "data can't have been read")
     })
     source(true, function (end) {
       sync2 = true
-      t.equal(end, true)
+      t.equal(end, true, 'valid abort end')
       t.ok(sync1, 'read called back first')
       t.end()
     })
@@ -86,7 +87,6 @@ test('can terminate file during a read', function (t) {
   })
 
 })
-
 
 //usually the read succeeds before the close does,
 //but not always
@@ -128,4 +128,10 @@ test('after 10k times, cb order is always correct', function (t) {
   })()
 
 })
+
+
+
+
+
+
 
