@@ -16,3 +16,23 @@ test('large file', function(t) {
     })
   );
 });
+
+
+test('large file as ascii strings', function(t) {
+  var expected = ['JTY', 'AU', '01', '0', '609', 'Australia/Sydney', '2012-02-29', ''];
+
+  t.plan(1);
+
+  pull(
+    file(path.resolve(__dirname, 'assets', 'AU.txt'), {encoding: 'ascii'}),
+    pull.through(function (str) {
+      t.equal(typeof str, 'string')
+    }),
+    pull.collect(function(err, items) {
+      var lastFields = items[items.length - 1].split(/\s+/);
+      t.deepEqual(lastFields.slice(-expected.length), expected, 'ok');
+    })
+  );
+});
+
+
