@@ -21,11 +21,15 @@ module.exports = function(filename, opts) {
   var bufferSize = opts && opts.bufferSize || 1024;
   var start = opts && opts.start || 0
   var end = opts && opts.end || Number.MAX_SAFE_INTEGER
-  var fd;
-  var ended;
+  var fd = opts && opts.fd
+  var ended, closeNext, busy, _cb;
+
+  var flags = opts && opts.flags || 'r'
 
   function readNext(cb) {
+    if(closeNext) return close(cb)
     var toRead = Math.min(end - start, bufferSize);
+    busy = true
     fs.read(
       fd,
       new Buffer(toRead),
@@ -33,8 +37,14 @@ module.exports = function(filename, opts) {
       toRead,
       start,
       function(err, count, buffer) {
+        busy = false
         start += count;
         // if we have received an end noticiation, just discard this data
+        if(closeNext) {
+          close(_cb)
+          return cb(closeNext)
+        }
+
         if (ended) {
           return cb(err || ended);
         }
@@ -44,43 +54,81 @@ module.exports = function(filename, opts) {
           return cb(err);
         }
 
-        cb(count === 0, count === 0 ? null : buffer.slice(0, count));
+        if(count === toRead)
+          cb(null, buffer)
+        else if(count < toRead) {
+          closeNext = true
+          cb(null, buffer.slice(0, count))
+        }
       }
     );
   }
 
   function open(cb) {
-    fs.open(filename, 'r', mode, function(err, descriptor) {
+    busy = true
+    fs.open(filename, flags, mode, function(err, descriptor) {
+      // save the file descriptor
+      fd = descriptor;
+
+      busy = false
+      if(closeNext) {
+        close(_cb)
+        return cb(closeNext)
+      }
+
       if (err) {
         return cb(err);
       }
-
-      // save the file descriptor
-      fd = descriptor;
 
       // read the next bytes
       return readNext(cb);
     });
   }
 
-  return function(end, cb) {
-    if (end) {
-      // if we have already received the end notification, abort further
-      if (ended) {
-        return cb(ended)
-      }
+  function close (cb) {
+    //if auto close is disabled, then user manages fd.
+    if(opts && opts.autoClose === false) return cb(true)
 
-      ended = end;
-      return fs.close(fd, function() {
-        cb(end);
+    //wait until we have got out of bed, then go back to bed.
+    //or if we are reading, wait till we read, then go back to bed.
+    else if(busy) {
+      _cb = cb
+      return closeNext = true
+    }
+
+    //first read was close, don't even get out of bed.
+    else if(!fd) {
+      return cb(true)
+    }
+
+    //go back to bed
+    else {
+      fs.close(fd, function(err) {
+        fd = null;
+        cb(err || true);
       });
     }
+  }
 
-    if (! fd) {
-      return open(cb);
+  return function(end, cb) {
+    if (end) {
+      ended = end;
+      close(cb);
+    }
+    // if we have already received the end notification, abort further
+    else if (ended) {
+      cb(ended)
     }
 
-    return readNext(cb);
+    else if (! fd) {
+      open(cb);
+    }
+
+    else
+      readNext(cb);
   };
 };
+
+
+
 
