@@ -31,5 +31,8 @@
   "bugs": {
     "url": "https://github.com/DamonOehlman/pull-file/issues"
   },
-  "homepage": "https://github.com/DamonOehlman/pull-file"
+  "homepage": "https://github.com/DamonOehlman/pull-file",
+  "dependencies": {
+    "pull-utf8-decoder": "^1.0.2"
+  }
 }
