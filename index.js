@@ -3,7 +3,7 @@
 'use strict';
 
 var fs = require('fs');
-
+var Decoder = require('pull-utf8-decoder')
 /**
   # pull-file
 
@@ -114,7 +114,7 @@ module.exports = function(filename, opts) {
     }
   }
 
-  return function(end, cb) {
+  function source (end, cb) {
     if (end) {
       ended = end;
       close(cb);
@@ -131,6 +131,13 @@ module.exports = function(filename, opts) {
     else
       readNext(cb);
   };
+
+  //read directly to text
+  if(opts && opts.encoding)
+    return Decoder(opts.encoding)(source)
+
+  return source
+
 };
 
 
