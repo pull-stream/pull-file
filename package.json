@@ -14,12 +14,11 @@
   ],
   "author": "Damon Oehlman <damon.oehlman@gmail.com>",
   "license": "MIT",
-  "dependencies": {
-    "pull-core": "^1"
-  },
   "devDependencies": {
-    "pull-stream": "^2",
-    "tape": "^2"
+    "cont": "^1.0.3",
+    "pull-stream": "^3.1.0",
+    "statistics": "^2.0.1",
+    "tape": "^4.4.0"
   },
   "directories": {
     "example": "examples",
@@ -32,5 +31,8 @@
   "bugs": {
     "url": "https://github.com/DamonOehlman/pull-file/issues"
   },
-  "homepage": "https://github.com/DamonOehlman/pull-file"
+  "homepage": "https://github.com/DamonOehlman/pull-file",
+  "dependencies": {
+    "pull-utf8-decoder": "^1.0.2"
+  }
 }
