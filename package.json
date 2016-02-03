@@ -4,7 +4,7 @@
   "description": "Pull streams implementation of a file reader",
   "main": "index.js",
   "scripts": {
-    "test": "node test/all.js",
+    "test": "set -e; for t in test/*.js; do node $t; done",
     "gendocs": "gendocs > README.md"
   },
   "keywords": [
