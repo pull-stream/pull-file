@@ -56,11 +56,11 @@ module.exports = function(filename, opts) {
           return cb(err);
         }
 
-        if(count === toRead)
-          cb(null, buffer)
-        else if(count < toRead) {
-          closeNext = true
-          cb(null, buffer.slice(0, count))
+        if(count === buffer.length) {
+          cb(null, buffer);
+        } else {
+          closeNext = true;
+          cb(null, buffer.slice(0, count));
         }
       }
     );
@@ -138,6 +138,11 @@ module.exports = function(filename, opts) {
   return source
 
 };
+
+
+
+
+
 
 
 
