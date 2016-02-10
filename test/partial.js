@@ -7,6 +7,13 @@ var cont = require('cont')
 var fs = require('fs')
 
 var crypto = require('crypto')
+var osenv = require('osenv')
+
+var tmpfile = path.join(osenv.tmpdir(), 'test_pull-file_big')
+var crypto = require('crypto')
+
+var big = crypto.pseudoRandomBytes(10*1024*1024)
+fs.writeFileSync(tmpfile, big)
 
 function hash (data) {
   return crypto.createHash('sha256').update(data).digest('hex')
@@ -24,20 +31,13 @@ tape('read files partially', function (t) {
     return function (cb) {
       var opts = {start: start, end: end}
       var expected
-      console.log(file)
       var _expected = fs.readFileSync(file, opts)
 
-      console.log(
-          start || 0,
-          end || _expected.length
-      )
       expected = _expected
         .slice(
           start || 0,
           end || _expected.length
         )
-
-      console.log('ELength', expected.length)
 
       pull(
         File(file, opts),
@@ -53,9 +53,9 @@ tape('read files partially', function (t) {
   }
 
   cont.para([
-    test(asset('AU.txt'), 0, 10*MB),
-    test(asset('AU.txt'), 5*MB, 12*MB),
-    test(asset('AU.txt'), 5*MB, 6*MB),
+    test(tmpfile, 0, 9*MB),
+    test(tmpfile, 5*MB, 10*MB),
+    test(tmpfile, 5*MB, 6*MB),
     test(asset('ipsum.txt')),
     test(asset('test.txt'), 1, 4)
   ])(function (err) {
@@ -63,6 +63,11 @@ tape('read files partially', function (t) {
   })
 
 })
+
+
+
+
+
 
 
 

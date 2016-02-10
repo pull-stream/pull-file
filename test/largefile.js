@@ -1,36 +1,44 @@
-var path = require('path');
 var test = require('tape');
 var pull = require('pull-stream');
 var file = require('..');
 
-test('large file', function(t) {
-  var expected = ['JTY', 'AU', '01', '0', '609', 'Australia/Sydney', '2012-02-29', ''];
+var path = require('path');
+var crypto = require('crypto')
+var osenv = require('osenv')
+var fs = require('fs')
 
-  t.plan(1);
+var tmpfile = path.join(osenv.tmpdir(), 'test_pull-file_big')
+
+function hash (data) {
+  return crypto.createHash('sha256').update(data).digest('hex')
+}
+
+test('large file', function(t) {
+  var big = crypto.pseudoRandomBytes(10*1024*1024)
+  fs.writeFileSync(tmpfile, big)
 
   pull(
-    file(path.resolve(__dirname, 'assets', 'AU.txt')),
+    file(tmpfile),
     pull.collect(function(err, items) {
-      var lastFields = items[items.length - 1].toString().split(/\s+/);
-      t.deepEqual(lastFields.slice(-expected.length), expected, 'ok');
+      t.equal(hash(big), hash(Buffer.concat(items)))
+      t.end()
     })
   );
 });
 
 
 test('large file as ascii strings', function(t) {
-  var expected = ['JTY', 'AU', '01', '0', '609', 'Australia/Sydney', '2012-02-29', ''];
-
-  t.plan(1);
+  var big = crypto.pseudoRandomBytes(10*1024*1024).toString('base64')
+  fs.writeFileSync(tmpfile, big, 'ascii');
 
   pull(
-    file(path.resolve(__dirname, 'assets', 'AU.txt'), {encoding: 'ascii'}),
+    file(tmpfile, {encoding: 'ascii'}),
     pull.through(function (str) {
-      t.equal(typeof str, 'string')
+      t.equal(typeof str, 'string');
     }),
     pull.collect(function(err, items) {
-      var lastFields = items[items.length - 1].split(/\s+/);
-      t.deepEqual(lastFields.slice(-expected.length), expected, 'ok');
+      t.equal(hash(big), hash(items.join('')))
+      t.end()
     })
   );
 });
