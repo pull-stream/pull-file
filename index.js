@@ -60,6 +60,7 @@ module.exports = function(filename, opts) {
           cb(null, buffer);
         } else {
           closeNext = true;
+          _cb = function () {}
           cb(null, buffer.slice(0, count));
         }
       }
