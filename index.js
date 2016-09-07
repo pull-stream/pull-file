@@ -24,11 +24,31 @@ module.exports = function(filename, opts) {
   var fd = opts && opts.fd
   var ended, closeNext, busy, _cb;
   var _buffer = new Buffer(bufferSize)
+  var live = !!opts.live
+  var _cb
+
+  if(live) {
+    fs.watch(filename, {
+      persistent: opts.persistent !== false,
+    },
+    function (event, filename, stat) {
+      if(_cb) {
+        var cb = _cb
+        _cb = null
+        closeNext = false
+        readNext(cb)
+      }
+    })
+
+  }
 
   var flags = opts && opts.flags || 'r'
 
   function readNext(cb) {
-    if(closeNext) return close(cb)
+    if(closeNext) {
+      if(!live) return close(cb)
+      else return _cb = cb
+    }
     var toRead = Math.min(end - start, bufferSize);
     busy = true
 
@@ -42,7 +62,7 @@ module.exports = function(filename, opts) {
         busy = false
         start += count;
         // if we have received an end noticiation, just discard this data
-        if(closeNext) {
+        if(closeNext && !live) {
           close(_cb)
           return cb(closeNext)
         }
@@ -138,13 +158,4 @@ module.exports = function(filename, opts) {
   return source
 
 };
-
-
-
-
-
-
-
-
-
 
