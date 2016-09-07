@@ -28,7 +28,6 @@ test('can terminate read process', function(t) {
   );
 });
 
-
 test('can terminate file immediately (before open)', function (t) {
 
   var source = file(ipsum)
@@ -42,18 +41,19 @@ test('can terminate file immediately (before open)', function (t) {
 
 })
 
-
 test('can terminate file immediately (after open)', function (t) {
 
   var source = file(ipsum)
   var sync1 = false, sync2 = false
   t.plan(6)
   source(null, function (end, data) {
+    if(sync1) throw new Error('read1 called twice')
     sync1 = true
     t.equal(end, true, 'read aborted, end=true')
     t.notOk(data, 'read aborted, data = null')
   })
   source(true, function (end) {
+    if(sync2) throw new Error('read2 called twice')
     sync2 = true
     t.ok(sync1, 'read cb was first')
     t.equal(end, true)
@@ -128,6 +128,9 @@ test('after 10k times, cb order is always correct', function (t) {
   })()
 
 })
+
+
+
 
 
 
