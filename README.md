@@ -1,9 +1,7 @@
 # pull-file
 
-This is a simple module which uses raw file reading methods available in
-the node `fs` module to read files on-demand.  It's a work in progress
-and feedback is welcome :)
-
+a pull-streaming file reader, build directly on the low level stream functions.
+by passing node's fs streams.
 
 [![NPM](https://nodei.co/npm/pull-file.png)](https://nodei.co/npm/pull-file/)
 
@@ -25,6 +23,12 @@ pull(
   })
 );
 ```
+## options
+
+this supports all the options that node's [fs.createReadStream](https://nodejs.org/dist/latest-v6.x/docs/api/fs.html#fs_fs_createreadstream_path_options) supports,
+and _also_ this supports a `live: true` property which will keep the stream open and wait for appends
+when it gets to the end.
+
 
 ## License(s)
 
@@ -50,3 +54,4 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
 CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
 TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
