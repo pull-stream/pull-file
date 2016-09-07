@@ -26,9 +26,9 @@ module.exports = function(filename, opts) {
   var _buffer = new Buffer(bufferSize)
   var live = !!opts.live
   var _cb
-
+  var watcher
   if(live) {
-    fs.watch(filename, {
+    watcher = fs.watch(filename, {
       persistent: opts.persistent !== false,
     },
     function (event, filename, stat) {
@@ -109,6 +109,7 @@ module.exports = function(filename, opts) {
   }
 
   function close (cb) {
+    if(watcher) watcher.close()
     //if auto close is disabled, then user manages fd.
     if(opts && opts.autoClose === false) return cb(true)
 
@@ -128,6 +129,7 @@ module.exports = function(filename, opts) {
     else {
       fs.close(fd, function(err) {
         fd = null;
+        if(_cb) _cb(err || true)
         cb(err || true);
       });
     }
@@ -136,6 +138,7 @@ module.exports = function(filename, opts) {
   function source (end, cb) {
     if (end) {
       ended = end;
+      live = false
       close(cb);
     }
     // if we have already received the end notification, abort further
