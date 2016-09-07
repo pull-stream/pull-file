@@ -9,26 +9,28 @@ tape('append to a file', function (t) {
 
   var filename = '/tmp/test_pull-file_append'+Date.now()
 
+  var n = 10, r = 0, ended = false
   ;(function next () {
-    fs.appendFile(filename, new Date() +'\n', function (e) {
-      setTimeout(next, 1000)
+    --n
+    fs.appendFile(filename, Date.now() +'\n', function (e) {
+      if(n) setTimeout(next, 20).unref()
+      else { ended = true; drain.abort() }
     })
-    
   })()
 
-  pull(
-    File(filename, {live: true}),
-    pull.drain(function (chunk) {
-      console.log('chunk', chunk.toString())
-    }, function (err) {
-      if(err) throw err
-      t.fail('stream ended')
-
-    })
-  )
+  var drain = pull.drain(function (chunk) {
+    r ++
+    t.notEqual(chunk.length, 0)
+  }, function (err) {
+    t.equal(n, 0, 'writes')
+    t.equal(r, 10, 'reads')
+    t.end()
+  })
 
 
+  pull(File(filename, {live: true}), drain)
 })
+
 
 
 
