@@ -22,15 +22,37 @@ module.exports = function(filename, opts) {
   var start = opts && opts.start || 0
   var end = opts && opts.end || Number.MAX_SAFE_INTEGER
   var fd = opts && opts.fd
-  var ended, closeNext, busy, _cb;
+
+  var ended, closeNext, busy;
   var _buffer = new Buffer(bufferSize)
+  var live = opts && !!opts.live
+  var liveCb, closeCb
+  var watcher
+  if(live) {
+    watcher = fs.watch(filename, {
+      persistent: opts.persistent !== false,
+    },
+    function (event) {
+      if(liveCb && event === 'change') {
+        var cb = liveCb
+        liveCb = null
+        closeNext = false
+        readNext(cb)
+      }
+    })
+
+  }
 
   var flags = opts && opts.flags || 'r'
 
   function readNext(cb) {
-    if(closeNext) return close(cb)
+    if(closeNext) {
+      if(!live) close(cb);
+      else liveCb = cb;
+      return
+    }
     var toRead = Math.min(end - start, bufferSize);
-    busy = true
+    busy = true;
 
     fs.read(
       fd,
@@ -39,12 +61,12 @@ module.exports = function(filename, opts) {
       toRead,
       start,
       function(err, count, buffer) {
-        busy = false
+        busy = false;
         start += count;
         // if we have received an end noticiation, just discard this data
-        if(closeNext) {
-          close(_cb)
-          return cb(closeNext)
+        if(closeNext && !live) {
+          close(closeCb);
+          return cb(closeNext);
         }
 
         if (ended) {
@@ -58,6 +80,8 @@ module.exports = function(filename, opts) {
 
         if(count === buffer.length) {
           cb(null, buffer);
+        } else if(count === 0 && live) {
+          liveCb = cb; closeNext = true
         } else {
           closeNext = true;
           cb(null, buffer.slice(0, count));
@@ -68,15 +92,15 @@ module.exports = function(filename, opts) {
   }
 
   function open(cb) {
-    busy = true
+    busy = true;
     fs.open(filename, flags, mode, function(err, descriptor) {
       // save the file descriptor
       fd = descriptor;
 
       busy = false
       if(closeNext) {
-        close(_cb)
-        return cb(closeNext)
+        close(closeCb);
+        return cb(closeNext);
       }
 
       if (err) {
@@ -89,13 +113,15 @@ module.exports = function(filename, opts) {
   }
 
   function close (cb) {
+    if(!cb) throw new Error('close must have cb')
+    if(watcher) watcher.close()
     //if auto close is disabled, then user manages fd.
     if(opts && opts.autoClose === false) return cb(true)
 
     //wait until we have got out of bed, then go back to bed.
     //or if we are reading, wait till we read, then go back to bed.
     else if(busy) {
-      _cb = cb
+      closeCb = cb
       return closeNext = true
     }
 
@@ -116,11 +142,15 @@ module.exports = function(filename, opts) {
   function source (end, cb) {
     if (end) {
       ended = end;
+      live = false;
+      if(liveCb) {
+        liveCb(end || true);
+      }
       close(cb);
     }
     // if we have already received the end notification, abort further
     else if (ended) {
-      cb(ended)
+      cb(ended);
     }
 
     else if (! fd) {
@@ -138,13 +168,4 @@ module.exports = function(filename, opts) {
   return source
 
 };
-
-
-
-
-
-
-
-
-
 
