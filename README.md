@@ -4,8 +4,7 @@ a pull-streaming file reader, build directly on the low level stream functions.
 by passing node's fs streams.
 
 [![NPM](https://nodei.co/npm/pull-file.png)](https://nodei.co/npm/pull-file/)
-
-[![Build Status](https://img.shields.io/travis/DamonOehlman/pull-file.svg?branch=master)](https://travis-ci.org/DamonOehlman/pull-file) [![experimental](https://img.shields.io/badge/stability-experimental-red.svg)](https://github.com/badges/stability-badges) [![Dependency Status](https://david-dm.org/DamonOehlman/pull-file.svg)](https://david-dm.org/DamonOehlman/pull-file) 
+[![Build Status](https://img.shields.io/travis/pull-stream/pull-file.svg?branch=master)](https://travis-ci.org/pull-stream/pull-file)
 
 ## Example Usage
 
