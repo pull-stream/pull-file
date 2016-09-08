@@ -84,6 +84,7 @@ module.exports = function(filename, opts) {
           liveCb = cb; closeNext = true
         } else {
           closeNext = true;
+          _cb = function () {}
           cb(null, buffer.slice(0, count));
         }
       }
