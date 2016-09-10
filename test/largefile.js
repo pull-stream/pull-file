@@ -43,8 +43,43 @@ test('large file as ascii strings', function(t) {
   );
 });
 
+test('large file fast reads', function(t) {
+  var big = crypto.pseudoRandomBytes(10*1024*1024)
+  fs.writeFileSync(tmpfile, big)
 
+  var read = file(tmpfile, {bufferSize: 1024 * 1024})
+  var items = []
 
+  read(null, checkRead)
+  read(null, checkRead)
+  read(null, checkRead)
+  read(null, checkRead)
+  read(null, checkRead)
 
+  setTimeout(function () {
+    read(null, checkRead)
+    read(null, checkRead)
+    read(null, checkRead)
+    read(null, checkRead)
+    read(null, checkRead)
+    read(null, function (err, data) {
+      t.equal(err, true)
+      t.equal(data, undefined)
+      next()
+    })
+  }, 10)
 
+  function checkRead (err, data) {
+    t.equal(data.length, 1024 * 1024)
+    items.push(data)
+    next()
+  }
 
+  var i = 0
+  function next () {
+    if (++i === 11) {
+      t.equal(hash(big), hash(Buffer.concat(items)))
+      t.end()
+    }
+  }
+})
