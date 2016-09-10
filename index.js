@@ -4,6 +4,7 @@
 
 var fs = require('fs');
 var Decoder = require('pull-utf8-decoder')
+var Lock = require('lock')
 /**
   # pull-file
 
@@ -25,6 +26,7 @@ module.exports = function(filename, opts) {
 
   var ended, closeNext, busy;
   var _buffer = new Buffer(bufferSize)
+  var lock = Lock()
   var live = opts && !!opts.live
   var liveCb, closeCb
   var watcher
@@ -78,10 +80,12 @@ module.exports = function(filename, opts) {
           return cb(err);
         }
 
-        if(count === buffer.length) {
+        if(count === toRead && count === buffer.length) {
           cb(null, buffer);
         } else if(count === 0 && live) {
           liveCb = cb; closeNext = true
+        } else if (count === 0) {
+          cb(ended = true)
         } else {
           closeNext = true;
           cb(null, buffer.slice(0, count));
@@ -161,11 +165,16 @@ module.exports = function(filename, opts) {
       readNext(cb);
   };
 
+  var lockedSource = function (end, cb) {
+    lock('source', function (release) {
+      source(end, release(cb))
+    })
+  }
+
   //read directly to text
   if(opts && opts.encoding)
-    return Decoder(opts.encoding)(source)
+    return Decoder(opts.encoding)(lockedSource)
 
-  return source
+  return lockedSource
 
 };
-
