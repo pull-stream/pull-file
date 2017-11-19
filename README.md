@@ -27,7 +27,9 @@ pull(
 
 this supports all the options that node's [fs.createReadStream](https://nodejs.org/dist/latest-v6.x/docs/api/fs.html#fs_fs_createreadstream_path_options) supports,
 and _also_ this supports a `live: true` property which will keep the stream open and wait for appends
-when it gets to the end.
+when it gets to the end and an explicit `buffer` option where your chunks will be read to.
+Note that if your downstream operations are async you may run into concurrency
+issues with this option. Use at your own risk!
 
 
 ## License(s)
@@ -54,4 +56,3 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
 CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
 TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
