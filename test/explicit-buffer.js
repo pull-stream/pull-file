@@ -18,7 +18,7 @@ function asset(file) {
 }
 
 test('large file in explicit buffer', function(t) {
-  var buf = Buffer.alloc(65551) // prime close to 1024 * 64
+  var buf = new Buffer(65551) // prime close to 1024 * 64
   var h = crypto.createHash('sha256')
 
   var big = fs.readFileSync(asset('img.jpg'))
