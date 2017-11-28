@@ -18,13 +18,13 @@ var Decoder = require('pull-utf8-decoder')
 **/
 module.exports = function(filename, opts) {
   var mode = opts && opts.mode || 0x1B6; // 0666
-  var bufferSize = opts && opts.bufferSize || 1024*64;
+  var bufferSize = opts && (opts.bufferSize || (opts.buffer && opts.buffer.length))  || 1024*64;
   var start = opts && opts.start || 0
   var end = opts && opts.end || Number.MAX_SAFE_INTEGER
   var fd = opts && opts.fd
 
   var ended, closeNext, busy;
-  var _buffer = new Buffer(bufferSize)
+  var _buffer = opts && opts.buffer || new Buffer(bufferSize)
   var live = opts && !!opts.live
   var liveCb, closeCb
   var watcher
@@ -88,7 +88,7 @@ module.exports = function(filename, opts) {
         }
       }
     );
-    _buffer = new Buffer(Math.min(end - start, bufferSize))
+    _buffer = opts && opts.buffer || new Buffer(Math.min(end - start, bufferSize))
   }
 
   function open(cb) {
@@ -168,4 +168,3 @@ module.exports = function(filename, opts) {
   return source
 
 };
-
