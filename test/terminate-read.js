@@ -105,7 +105,12 @@ test('after 10k times, cb order is always correct', function (t) {
       return t.end()
     }
 
-    var fd = fs.openSync(__filename, 'r+', 0666)
+    const ownerReadWrite = fs.constants.S_IRUSR + fs.constants.S_IWUSR
+    const groupReadWrite = fs.constants.S_IRGRP + fs.constants.S_IWGRP
+    const otherReadWrite = fs.constants.S_IROTH + fs.constants.S_IWOTH
+    const fileMode = ownerReadWrite + groupReadWrite + otherReadWrite
+
+    var fd = fs.openSync(__filename, 'r+', fileMode)
     var data, closed
 
     //create a file stream with a fixed fd,
